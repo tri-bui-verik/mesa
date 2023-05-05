@@ -22568,7 +22568,6 @@ vtss_rc vtss_phy_ts_bypass_set(vtss_state_t    *vtss_state,
     BOOL support = FALSE;
     vtss_phy_ts_blk_id_t blk_id = VTSS_PHY_TS_PROC_BLK_ID(0);
     vtss_port_no_t base_port_no = port_no;
-
     VTSS_RC(vtss_phy_ts_is_1588_supported(vtss_state, port_no, &gen, &support));
     if (vtss_state->phy_ts_port_conf[port_no].port_ts_init_done == FALSE) {
 	    vtss_phy_ts_base_port_get_priv(vtss_state, port_no, &base_port_no);
@@ -22580,10 +22579,11 @@ vtss_rc vtss_phy_ts_bypass_set(vtss_state_t    *vtss_state,
             VTSS_I("Set 1588 in bypass on port %u", port_no);
 
             //For the new Revision Devices Bypass cannot cause 1588 to go OOS, So no need to display the warning.
+            printf("vtss_phy_ts_version_check\n");
             VTSS_RC(vtss_phy_ts_version_check(vtss_state, port_no, &new_revision));
             if(new_revision == FALSE){
 #if defined(VTSS_FEATURE_MACSEC)
-                if (vtss_state->phy_ts_port_conf[port_no].is_gen2 == TRUE) {
+                if (vtss_state->phy_ts_port_conf[port_no].is_gen2 == TRUE) {           
                     VTSS_RC(VTSS_PHY_TS_READ_CSR(port_no, blk_id, VTSS_PTP_IP_1588_TOP_CFG_STAT_MODE_CTL, &value));
                     if(VTSS_X_PTP_IP_1588_TOP_CFG_STAT_MODE_CTL_PROTOCOL_MODE(value) == 4){
                         if (!force_bypass) {
@@ -22596,13 +22596,13 @@ vtss_rc vtss_phy_ts_bypass_set(vtss_state_t    *vtss_state,
                 }
 #endif
             }
-
+            
             //        if (vtss_state->phy_ts_port_conf[port_no].port_ena) {
-            VTSS_RC(VTSS_PHY_TS_READ_CSR(port_no, blk_id,
-                    VTSS_PTP_IP_1588_TOP_CFG_STAT_INTERFACE_CTL, &value));
-            value |= (VTSS_F_PTP_IP_1588_TOP_CFG_STAT_INTERFACE_CTL_EGR_BYPASS);
-            VTSS_RC(VTSS_PHY_TS_WRITE_CSR(port_no, blk_id,
-                    VTSS_PTP_IP_1588_TOP_CFG_STAT_INTERFACE_CTL, &value));
+            // VTSS_RC(VTSS_PHY_TS_READ_CSR(port_no, blk_id,
+            //         VTSS_PTP_IP_1588_TOP_CFG_STAT_INTERFACE_CTL, &value));
+            // value |= (VTSS_F_PTP_IP_1588_TOP_CFG_STAT_INTERFACE_CTL_EGR_BYPASS);
+            // VTSS_RC(VTSS_PHY_TS_WRITE_CSR(port_no, blk_id,
+            //         VTSS_PTP_IP_1588_TOP_CFG_STAT_INTERFACE_CTL, &value));
             // wait for 1ms after 1588 bypass
             //           VTSS_MSLEEP(1);
             //        }
@@ -22610,13 +22610,13 @@ vtss_rc vtss_phy_ts_bypass_set(vtss_state_t    *vtss_state,
             /*5. Enable 1588 datapath */
             if (vtss_state->phy_ts_port_conf[port_no].port_ena) {
                 VTSS_I("1588-Port-Enabled::Clearing BYPASS - Enable 1588 datapath on port %u", port_no);
-                VTSS_RC(VTSS_PHY_TS_READ_CSR(port_no, blk_id,
-                        VTSS_PTP_IP_1588_TOP_CFG_STAT_INTERFACE_CTL, &value));
-                value = VTSS_PHY_TS_CLR_BITS(value, (VTSS_F_PTP_IP_1588_TOP_CFG_STAT_INTERFACE_CTL_EGR_BYPASS));
-                VTSS_RC(VTSS_PHY_TS_WRITE_CSR(port_no, blk_id,
-                        VTSS_PTP_IP_1588_TOP_CFG_STAT_INTERFACE_CTL, &value));
-                VTSS_RC(VTSS_PHY_TS_READ_CSR(port_no, blk_id,
-                        VTSS_PTP_IP_1588_TOP_CFG_STAT_VERSION_CODE, &value));
+                // VTSS_RC(VTSS_PHY_TS_READ_CSR(port_no, blk_id,
+                //         VTSS_PTP_IP_1588_TOP_CFG_STAT_INTERFACE_CTL, &value));
+                // value = VTSS_PHY_TS_CLR_BITS(value, (VTSS_F_PTP_IP_1588_TOP_CFG_STAT_INTERFACE_CTL_EGR_BYPASS));
+                // VTSS_RC(VTSS_PHY_TS_WRITE_CSR(port_no, blk_id,
+                //         VTSS_PTP_IP_1588_TOP_CFG_STAT_INTERFACE_CTL, &value));
+                // VTSS_RC(VTSS_PHY_TS_READ_CSR(port_no, blk_id,
+                //         VTSS_PTP_IP_1588_TOP_CFG_STAT_VERSION_CODE, &value));
             } else {
                 VTSS_I("1588-Port-NOT-Enabled:: 1588 datapath on port %u Disabled", port_no);
             }
@@ -22629,16 +22629,17 @@ vtss_rc vtss_phy_ts_version_check(vtss_state_t    *vtss_state,
                                   const vtss_port_no_t port_no,
                                   BOOL *prevent)
 {
-    u32 value=0;
-    VTSS_RC(VTSS_PHY_TS_READ_CSR(port_no, VTSS_PHY_TS_PROC_BLK_ID(0),
-                VTSS_PTP_IP_1588_TOP_CFG_STAT_VERSION_CODE, &value));
+    // u32 value=0;
+    // VTSS_RC(VTSS_PHY_TS_READ_CSR(port_no, VTSS_PHY_TS_PROC_BLK_ID(0),
+    //             VTSS_PTP_IP_1588_TOP_CFG_STAT_VERSION_CODE, &value));
 
-    if ((value & 0xff) >= VTSS_PTP_IP_1588_VERSION_2_1) {
-        VTSS_I("Prevent FIFO OOS ALGO on port %u\n", port_no);
-        *prevent = TRUE;
-    } else {
-        *prevent = FALSE;
-    }
+    // if ((value & 0xff) >= VTSS_PTP_IP_1588_VERSION_2_1) {
+    //     VTSS_I("Prevent FIFO OOS ALGO on port %u\n", port_no);
+    //     *prevent = TRUE;
+    // } else {
+    //     *prevent = FALSE;
+    // }
+    *prevent = FALSE;
     return VTSS_RC_OK;
 }
 

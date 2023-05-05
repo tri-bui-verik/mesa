@@ -756,7 +756,7 @@ int main(int argc, const char **argv) {
 /* ********************************************************** */
 
   printf("%s \n", board->descr);
-  vtss_appl_venice_spi_io_test(board->inst, port_no);
+  //vtss_appl_venice_spi_io_test(board->inst, port_no);
 
 #ifdef  VENICE_CHAR_BOARD
   printf ("Setup of VSC849x - VENICE Char/Eval Board \n");
@@ -850,7 +850,7 @@ int main(int argc, const char **argv) {
     // LREFCLK is_high_amp :
     // --> TRUE (1100mV to 1500mV diff swing)
     // --> FASLE (200mV to 1200mV diff swing)
-    oper_mode.l_clk_src.is_high_amp = TRUE;
+    oper_mode.l_clk_src.is_high_amp = FALSE;
 
     switch (phy_mode) {
     case PHY_MODE_10G_LAN_XAUI:
@@ -1006,7 +1006,7 @@ int main(int argc, const char **argv) {
         }
      }
   } // End Of FOR Loop configuring all the ports
-
+  exit(0);
   for (port_no = VTSS_PORT_NO_START; port_no < VTSS_PORTS; port_no++) {
 
 #if 1

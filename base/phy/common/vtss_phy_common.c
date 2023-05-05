@@ -641,6 +641,8 @@ vtss_rc csr_wr(vtss_state_t *vtss_state, vtss_port_no_t port_no, u16 mmd, BOOL i
     u16               reg_value_upper, reg_value_lower;
     BOOL              clause45 = FALSE, use_base_port = TRUE, is_cross_connected = FALSE;
     u32               offset, target, base_addr, reg_addr;
+    printf("Write reg: Device ID: 0x%04hhx, Address: 0x%04hhx, Value: 0x%08x\n",mmd, addr, value);
+    return VTSS_RC_OK;
 #ifdef VTSS_CHIP_10G_PHY
     vtss_phy_10g_family_t      phy_family = VTSS_PHY_FAMILY_10G_NONE;
     vtss_port_no_t port=0;
@@ -729,13 +731,13 @@ vtss_rc csr_wr(vtss_state_t *vtss_state, vtss_port_no_t port_no, u16 mmd, BOOL i
 
 vtss_rc csr_wrm(vtss_state_t *vtss_state, vtss_port_no_t port_no, u16 mmd, BOOL is32, u32 addr, u32 value, u32 mask)
 {
-    vtss_rc rc;
+    vtss_rc rc = VTSS_RC_OK;
     u32     val;
-
-    if ((rc = csr_rd(vtss_state, port_no, mmd, is32, addr, &val)) == VTSS_RC_OK) {
-        val = ((val & ~mask) | (value & mask));
-        rc = csr_wr(vtss_state, port_no, mmd, is32, addr, val);
-    }
+    printf("Write reg: Device ID: 0x%04hhx, Address: 0x%04hhx, Value: 0x%08x, Mask: 0x%08x\n",mmd, addr, value, mask);
+    // if ((rc = csr_rd(vtss_state, port_no, mmd, is32, addr, &val)) == VTSS_RC_OK) {
+    //     val = ((val & ~mask) | (value & mask));
+    //     rc = csr_wr(vtss_state, port_no, mmd, is32, addr, val);
+    // }
     return rc;
 }
 
@@ -1173,7 +1175,8 @@ vtss_rc phy_10g_mac_conf(vtss_state_t *vtss_state, vtss_port_no_t port_no, BOOL 
                          VTSS_F_VENICE_DEV1_MAC_ENABLE_MAC_ENA_MAC_ENA);
         } else {
             /* Do not disable mac when macsec is enabled */
-            CSR_RD(port_no, VTSS_VENICE_DEV1_MAC_ENABLE_MAC_ENA, &value);
+            //CSR_RD(port_no, VTSS_VENICE_DEV1_MAC_ENABLE_MAC_ENA, &value);
+            value = VTSS_F_LINE_PMA_MAC_ENABLE_MAC_ENA_MACSEC_CLK_ENA;
             if (!(value & VTSS_F_LINE_PMA_MAC_ENABLE_MAC_ENA_MACSEC_CLK_ENA)) {
                 CSR_WARM_WRM(port_no, VTSS_VENICE_DEV1_MAC_ENABLE_MAC_ENA, 0,
                              VTSS_F_VENICE_DEV1_MAC_ENABLE_MAC_ENA_MAC_ENA);

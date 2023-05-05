@@ -4587,76 +4587,76 @@ static vtss_rc vtss_venice_c_sd6g_ib_cal(vtss_state_t *vtss_state, vtss_port_no_
 
     VTSS_MSLEEP(20);
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(0), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_CAL_NOT_DONE & value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(0).PLL_CAL_NOT_DONE is not 0!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(0), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_CAL_NOT_DONE & value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(0).PLL_CAL_NOT_DONE is not 0!");
+//         status = VTSS_RC_ERROR;
+//     };
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(0), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_OUT_OF_RANGE_ERR & value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(0).PLL_OUT_OF_RANGE_ERR is not 0!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(0), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_OUT_OF_RANGE_ERR & value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(0).PLL_OUT_OF_RANGE_ERR is not 0!");
+//         status = VTSS_RC_ERROR;
+//     };
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(0), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_CAL_ERR & value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(0).PLL_CAL_ERR is not 0!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(0), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_CAL_ERR & value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(0).PLL_CAL_ERR is not 0!");
+//         status = VTSS_RC_ERROR;
+//     };
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(1), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_CAL_NOT_DONE & value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(1).PLL_CAL_NOT_DONE is not 0!");
-        status = VTSS_RC_ERROR;
-    };
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(1), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_OUT_OF_RANGE_ERR & value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(1).PLL_OUT_OF_RANGE_ERR is not 0!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(1), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_CAL_NOT_DONE & value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(1).PLL_CAL_NOT_DONE is not 0!");
+//         status = VTSS_RC_ERROR;
+//     };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(1), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_OUT_OF_RANGE_ERR & value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(1).PLL_OUT_OF_RANGE_ERR is not 0!");
+//         status = VTSS_RC_ERROR;
+//     };
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(1), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_CAL_ERR & value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(1).PLL_CAL_ERR is not 0!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(1), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_CAL_ERR & value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(1).PLL_CAL_ERR is not 0!");
+//         status = VTSS_RC_ERROR;
+//     };
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(2), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_CAL_NOT_DONE & value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(2).PLL_CAL_NOT_DONE is not 0!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(2), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_CAL_NOT_DONE & value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(2).PLL_CAL_NOT_DONE is not 0!");
+//         status = VTSS_RC_ERROR;
+//     };
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(2), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_OUT_OF_RANGE_ERR & value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(2).PLL_OUT_OF_RANGE_ERR is not 0!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(2), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_OUT_OF_RANGE_ERR & value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(2).PLL_OUT_OF_RANGE_ERR is not 0!");
+//         status = VTSS_RC_ERROR;
+//     };
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(2), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_CAL_ERR & value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(2).PLL_CAL_ERR is not 0!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(2), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_CAL_ERR & value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(2).PLL_CAL_ERR is not 0!");
+//         status = VTSS_RC_ERROR;
+//     };
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(3), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_CAL_NOT_DONE & value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(3).PLL_CAL_NOT_DONE is not 0!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(3), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_CAL_NOT_DONE & value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(3).PLL_CAL_NOT_DONE is not 0!");
+//         status = VTSS_RC_ERROR;
+//     };
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(3), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_OUT_OF_RANGE_ERR & value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(3).PLL_OUT_OF_RANGE_ERR is not 0!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(3), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_OUT_OF_RANGE_ERR & value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(3).PLL_OUT_OF_RANGE_ERR is not 0!");
+//         status = VTSS_RC_ERROR;
+//     };
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(3), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_CAL_ERR & value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(3).PLL_CAL_ERR is not 0!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS(3), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_PLL_STATUS_PLL_CAL_ERR & value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_PLL_STATUS(3).PLL_CAL_ERR is not 0!");
+//         status = VTSS_RC_ERROR;
+//     };
 
     CSR_WARM_WRM(port_no, VTSS_VENICE_DEV4_SERDES6G_DIG_CFG_SERDES6G_MISC_CFG,
             0,
@@ -4780,29 +4780,29 @@ static vtss_rc vtss_venice_c_sd6g_ib_cal(vtss_state_t *vtss_state, vtss_port_no_
             VTSS_F_VENICE_DEV4_SERDES6G_ANA_CFG_SERDES6G_IB_CFG1B_IB_FILT_OFFSET,
             VTSS_F_VENICE_DEV4_SERDES6G_ANA_CFG_SERDES6G_IB_CFG1B_IB_FILT_OFFSET);
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0(0), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0_IB_CAL_DONE & value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_IB_STATUS0(0).IB_CAL_DONE is not 0!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0(0), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0_IB_CAL_DONE & value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_IB_STATUS0(0).IB_CAL_DONE is not 0!");
+//         status = VTSS_RC_ERROR;
+//     };
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0(1), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0_IB_CAL_DONE & value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_IB_STATUS0(1).IB_CAL_DONE is not 0!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0(1), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0_IB_CAL_DONE & value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_IB_STATUS0(1).IB_CAL_DONE is not 0!");
+//         status = VTSS_RC_ERROR;
+//     };
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0(2), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0_IB_CAL_DONE & value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_IB_STATUS0(2).IB_CAL_DONE is not 0!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0(2), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0_IB_CAL_DONE & value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_IB_STATUS0(2).IB_CAL_DONE is not 0!");
+//         status = VTSS_RC_ERROR;
+//     };
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0(3), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0_IB_CAL_DONE & value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_IB_STATUS0(3).IB_CAL_DONE is not 0!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0(3), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0_IB_CAL_DONE & value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_IB_STATUS0(3).IB_CAL_DONE is not 0!");
+//         status = VTSS_RC_ERROR;
+//     };
 
     CSR_WARM_WRM(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_CFG_SERDES6G_IB_CFG1B,
             0,
@@ -4810,29 +4810,29 @@ static vtss_rc vtss_venice_c_sd6g_ib_cal(vtss_state_t *vtss_state, vtss_port_no_
 
     VTSS_MSLEEP(200);
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0(0), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0_IB_CAL_DONE & ~value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_IB_STATUS0(0).IB_CAL_DONE is not 1!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0(0), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0_IB_CAL_DONE & ~value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_IB_STATUS0(0).IB_CAL_DONE is not 1!");
+//         status = VTSS_RC_ERROR;
+//     };
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0(1), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0_IB_CAL_DONE & ~value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_IB_STATUS0(1).IB_CAL_DONE is not 1!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0(1), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0_IB_CAL_DONE & ~value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_IB_STATUS0(1).IB_CAL_DONE is not 1!");
+//         status = VTSS_RC_ERROR;
+//     };
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0(2), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0_IB_CAL_DONE & ~value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_IB_STATUS0(2).IB_CAL_DONE is not 1!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0(2), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0_IB_CAL_DONE & ~value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_IB_STATUS0(2).IB_CAL_DONE is not 1!");
+//         status = VTSS_RC_ERROR;
+//     };
 
-    CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0(3), &value);
-    if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0_IB_CAL_DONE & ~value)) {
-        VTSS_E("VENICE_DEV4::SERDES6G_IB_STATUS0(3).IB_CAL_DONE is not 1!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0(3), &value);
+//     if ((VTSS_F_VENICE_DEV4_SERDES6G_ANA_STATUS_SERDES6G_IB_STATUS0_IB_CAL_DONE & ~value)) {
+//         VTSS_E("VENICE_DEV4::SERDES6G_IB_STATUS0(3).IB_CAL_DONE is not 1!");
+//         status = VTSS_RC_ERROR;
+//     };
 
     CSR_WARM_WRM(port_no, VTSS_VENICE_DEV4_SERDES6G_ANA_CFG_SERDES6G_IB_CFG0A,
             VTSS_F_VENICE_DEV4_SERDES6G_ANA_CFG_SERDES6G_IB_CFG0A_IB_SIG_DET_CLK_SEL(7),
@@ -4886,22 +4886,22 @@ static vtss_rc vtss_venice_c_sd6g_ib_cal(vtss_state_t *vtss_state, vtss_port_no_
 
     /* Wait until LCPLL stable again (be locked) */
     VTSS_MSLEEP(2);
-    CSR_RD(base_port(vtss_state, port_no), VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS0, &value);
-    if ((VTSS_F_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS0_LOCK_STATUS & ~value)) {
-        VTSS_E(" VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS0 LOCK_STATUS is not 1!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(base_port(vtss_state, port_no), VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS0, &value);
+//     if ((VTSS_F_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS0_LOCK_STATUS & ~value)) {
+//         VTSS_E(" VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS0 LOCK_STATUS is not 1!");
+//         status = VTSS_RC_ERROR;
+//     };
 
-    CSR_RD(base_port(vtss_state, port_no), VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS1A, &value);
-    if ((VTSS_F_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS1A_FSM_LOCK & ~value)) {
-        VTSS_E(" VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS1A FSM_LOCK is not 1!");
-        status = VTSS_RC_ERROR;
-    };
-    CSR_RD(base_port(vtss_state, port_no), VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS1A, &value);
-    if (VTSS_X_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS1A_FSM_STAT(value) != 6) {
-        VTSS_E(" VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS1A FSM_STAT value is not 6!");
-        status = VTSS_RC_ERROR;
-    };
+//     CSR_RD(base_port(vtss_state, port_no), VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS1A, &value);
+//     if ((VTSS_F_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS1A_FSM_LOCK & ~value)) {
+//         VTSS_E(" VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS1A FSM_LOCK is not 1!");
+//         status = VTSS_RC_ERROR;
+//     };
+//     CSR_RD(base_port(vtss_state, port_no), VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS1A, &value);
+//     if (VTSS_X_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS1A_FSM_STAT(value) != 6) {
+//         VTSS_E(" VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS1A FSM_STAT value is not 6!");
+//         status = VTSS_RC_ERROR;
+//     };
 
     return status;
 }
@@ -5455,7 +5455,7 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
     macsec_enable = vtss_state->macsec_conf[port_no].glb.init.enable;
 #endif
 
-    VTSS_I("phy_10g_mode_conf_set - Reset:%u\n",port_no);
+    printf("\nphy_10g_mode_conf_set - Reset:%u\n",port_no);
 
     if (vtss_state->sync_calling_private && ven_chip_diff_api_mode(vtss_state, port_no)) {
         /* If during warm start the configured mode is different from chip mode then this must be registered */ 
@@ -5465,6 +5465,7 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
     }
 
     /* Set Lopc control to: The part is in a LOPC alarm state when the LOPC pin is logic high */
+    printf("Set Lopc control to: The part is in a LOPC alarm state when the LOPC pin is logic high\n");
     CSR_COLD_WRM(port_no, VTSS_VENICE_DEV1_Vendor_Specific_LOPC_Control_Vendor_Specific_LOPC_Control,
             VTSS_F_VENICE_DEV1_Vendor_Specific_LOPC_Control_Vendor_Specific_LOPC_Control_LOPC_state_inversion_select,
             VTSS_F_VENICE_DEV1_Vendor_Specific_LOPC_Control_Vendor_Specific_LOPC_Control_LOPC_state_inversion_select);
@@ -5489,6 +5490,7 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
 
     if (!vtss_state->sync_calling_private) {
         /* Block level reset, not using WRM here because all bits in this register are One-shot */
+        printf("Block level reset\n");
         CSR_COLD_WR(port_no, VTSS_VENICE_DEV1_BLOCK_LEVEL_RESET_BLOCK_LEVEL_RESET1,
                 VTSS_F_VENICE_DEV1_BLOCK_LEVEL_RESET_BLOCK_LEVEL_RESET1_HOST_1G_PCS_INGR_RESET |
                 VTSS_F_VENICE_DEV1_BLOCK_LEVEL_RESET_BLOCK_LEVEL_RESET1_FIFO_INGR_RESET |
@@ -5507,6 +5509,7 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
                 VTSS_F_VENICE_DEV1_BLOCK_LEVEL_RESET_BLOCK_LEVEL_RESET2_WIS_EGR_RESET );
         VTSS_MSLEEP(10);
 
+        printf("Reset the mac configuration\n");
 #if defined(VTSS_FEATURE_MACSEC)
         /* Reset the mac configuration if macsec disabled */
         if (!vtss_state->macsec_conf[port_no].glb.init.enable) {
@@ -5529,7 +5532,9 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
 
 #endif 
         // Disable traffic and put MAC's in reset
+        printf("Disable traffic and put MAC's in reset\n");
         VTSS_RC(phy_10g_mac_conf(vtss_state, port_no, 0, macsec_enable));
+        printf("Disable traffic and put MAC's in reset: end\n");
 
 #if defined(VTSS_FEATURE_MACSEC)
         if (is_macsec_capable(vtss_state, port_no)) {
@@ -5539,8 +5544,9 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
 #endif
     }
     //PLL5G setup to be executed only when the POR_DONE bit is not set.
-    CSR_RD(base_port(vtss_state, port_no), VTSS_VENICE_GLOBAL_POR_STATUS_POR_DONE, &value);
-    value = value & VTSS_F_VENICE_GLOBAL_POR_STATUS_POR_DONE_POR_DONE;
+    //CSR_RD(base_port(vtss_state, port_no), VTSS_VENICE_GLOBAL_POR_STATUS_POR_DONE, &value);
+    //value = value & VTSS_F_VENICE_GLOBAL_POR_STATUS_POR_DONE_POR_DONE;
+    value = 0;
 
     if (vtss_state->phy_10g_state[base_port_no].mode.is_init == TRUE) {
         if(value == 0) {
@@ -5549,6 +5555,7 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
             /********************************************************/
 
             // Disable fine regulator (Host- and Line-side: ena_vco_contrh=0)
+            printf("Disable fine regulator (Host- and Line-side: ena_vco_contrh=0)\n");
             CSR_COLD_WRM(base_port(vtss_state, port_no), VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_CFG0A,
                     0,
                     VTSS_F_HOST_PLL5G_H_PLL5G_H_PLL5G_CFG0A_ENA_VCO_CONTRH);
@@ -5559,15 +5566,18 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
 
             // Increase Bandgap voltage (selbgv820=2) for Rev.A and B. 
             // Note: selbgv820 for Rev.C and D are set by register CFG8A_SELBGV820_REVC to value 4.
+            printf("Increase Bandgap voltage (selbgv820=2) for Rev.A and B.\n");
             CSR_COLD_WRM(base_port(vtss_state, port_no), VTSS_LINE_PLL5G_L_PLL5G_L_PLL5G_CFG0B,
                     VTSS_F_LINE_PLL5G_L_PLL5G_L_PLL5G_CFG0B_SELBGV820(2),
                     VTSS_M_LINE_PLL5G_L_PLL5G_L_PLL5G_CFG0B_SELBGV820);
 
             // Enable Input Buffer of PLL5G (ib_ctrl=0x7600)
+            printf("Enable Input Buffer of PLL5G (ib_ctrl=0x7600)\n");
             CSR_COLD_WRM(base_port(vtss_state, port_no), VTSS_LINE_PLL5G_L_PLL5G_L_PLL5G_CFG4A,
                     VTSS_F_LINE_PLL5G_L_PLL5G_L_PLL5G_CFG4A_IB_CTRL(0x7600),
                     VTSS_M_LINE_PLL5G_L_PLL5G_L_PLL5G_CFG4A_IB_CTRL);
             // Amplitude tolerance
+            printf("Amplitude tolerance\n");
             CSR_COLD_WRM(base_port(vtss_state, port_no), VTSS_LINE_PLL5G_L_PLL5G_L_PLL5G_CFG4A,
                     mode->l_clk_src.is_high_amp ? 0:VTSS_BIT(9),
                     VTSS_BIT(9));
@@ -5580,29 +5590,33 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
             for(i=0;i<10;i++)
             {
                 
-                VTSS_N("Work around to check the LCPLL Gain on Line side for Venice, iteration :%d\n", i);
+                printf("Work around to check the LCPLL Gain on Line side for Venice, iteration :%d\n", i);
                 // Stop PLL5G in order to initiate a recalibration (disable_fsm=1)
+                printf("Stop PLL5G in order to initiate a recalibration (disable_fsm=1)\n");
                 CSR_COLD_WRM(base_port(vtss_state, port_no), VTSS_LINE_PLL5G_L_PLL5G_L_PLL5G_CFG2A,
                         VTSS_F_LINE_PLL5G_L_PLL5G_L_PLL5G_CFG2A_DISABLE_FSM,
                         VTSS_F_LINE_PLL5G_L_PLL5G_L_PLL5G_CFG2A_DISABLE_FSM);
                 
                 // Restart and recalibrate PLL5G (disable_fsm=0)
+                printf("Restart and recalibrate PLL5G (disable_fsm=0)\n");
                 CSR_COLD_WRM(base_port(vtss_state, port_no), VTSS_LINE_PLL5G_L_PLL5G_L_PLL5G_CFG2A,
                         0,
                         VTSS_F_LINE_PLL5G_L_PLL5G_L_PLL5G_CFG2A_DISABLE_FSM);
                 
                 // Wait for 10 ms until PLL has come up
                 VTSS_MSLEEP(10);
-                CSR_RD(port_no, VTSS_LINE_PLL5G_L_PLL5G_L_PLL5G_STATUS1B,&value);
-                lcpll_gain = VTSS_EXTRACT_BITFIELD(value,0,4);
-                
+                //CSR_RD(port_no, VTSS_LINE_PLL5G_L_PLL5G_L_PLL5G_STATUS1B,&value);
+                //lcpll_gain = VTSS_EXTRACT_BITFIELD(value,0,4);
+                printf("Check L_PLL5G_STATUS1B(Device Id:0x1e, Addr:0x8212) until bit 3:0 > 2 and < 0xa\n");
+                break;
                 if(lcpll_gain > 2 && lcpll_gain < 0xa)
                 {
                     break;
                 }
-                VTSS_N("Restarting the FSM Toggle on Line side for Port: %d, Iteration:%d and current gain value:%d\n", port_no, i+1, lcpll_gain);
+                printf("Restarting the FSM Toggle on Line side for Port: %d, Iteration:%d and current gain value:%d\n", port_no, i+1, lcpll_gain);
             }
             
+            lcpll_gain = 3;
             if(lcpll_gain < 2 || lcpll_gain > 0xa) {
                 VTSS_E("Failed to initialize Line LCPLL as the gain was too high or low, current gain value for port %d, is : %d",port_no,lcpll_gain);
             }
@@ -5614,11 +5628,13 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
                 
                 VTSS_N("Work around to check the LCPLL Gain on Host side for Venice, iteration :%d\n", i);
                 // Stop PLL5G in order to initiate a recalibration (disable_fsm=1)
+                printf("Stop PLL5G in order to initiate a recalibration (disable_fsm=1)\n");
                 CSR_COLD_WRM(base_port(vtss_state, port_no), VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_CFG2A,
                         VTSS_F_HOST_PLL5G_H_PLL5G_H_PLL5G_CFG2A_DISABLE_FSM,
                         VTSS_F_HOST_PLL5G_H_PLL5G_H_PLL5G_CFG2A_DISABLE_FSM);
                 
                 // Restart and recalibrate PLL5G (disable_fsm=0)
+                printf("Restart and recalibrate PLL5G (disable_fsm=0)\n");
                 CSR_COLD_WRM(base_port(vtss_state, port_no), VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_CFG2A,
                         0,
                         VTSS_F_HOST_PLL5G_H_PLL5G_H_PLL5G_CFG2A_DISABLE_FSM);
@@ -5626,9 +5642,9 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
                 // Wait for 10 ms until PLL has come up
                 VTSS_MSLEEP(10);
                 
-                CSR_RD(port_no, VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS1B,&value);
-                lcpll_gain = VTSS_EXTRACT_BITFIELD(value,0,4);
-                
+                //CSR_RD(port_no, VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS1B,&value);
+                //lcpll_gain = VTSS_EXTRACT_BITFIELD(value,0,4);
+                printf("Check H_PLL5G_STATUS1B(Device Id:0x1e, Addr:0x810f) until bit 3:0 > 2 and < 0xa");
                 if(lcpll_gain > 2 && lcpll_gain < 0xa)
                 {
                     break;
@@ -5641,6 +5657,7 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
             }
 
             // trigger POR_DONE l(gic (por_done=1)
+           printf("trigger POR_DONE l(gic (por_done=1)");
             CSR_COLD_WRM(base_port(vtss_state, port_no), VTSS_VENICE_GLOBAL_POR_STATUS_POR_DONE,
                     VTSS_F_VENICE_GLOBAL_POR_STATUS_POR_DONE_POR_DONE,
                     VTSS_F_VENICE_GLOBAL_POR_STATUS_POR_DONE_POR_DONE);
@@ -5672,34 +5689,39 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
         mode->is_init = FALSE;
     }
   
-    CSR_RD(base_port_no,VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS0,&lcpll_status);
-    VTSS_I("Host PLL Status 0 is 0x%x for port %u \n", lcpll_status, port_no);
-    CSR_RD(base_port_no,VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS1A,&lcpll_status);
-    VTSS_I("Host PLL Status 1A is 0x%x for port %u \n", lcpll_status, port_no);
-    CSR_RD(base_port_no,VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS1B,&lcpll_status);
-    VTSS_I("Host PLL Status 1B is 0x%x for port %u \n", lcpll_status, port_no);
-    CSR_RD(base_port_no,VTSS_LINE_PLL5G_L_PLL5G_L_PLL5G_STATUS0,&lcpll_status);
-    VTSS_I("Line PLL Status 0 is 0x%x for port %u \n", lcpll_status, port_no);
-    CSR_RD(base_port_no,VTSS_LINE_PLL5G_L_PLL5G_L_PLL5G_STATUS1A,&lcpll_status);
-    VTSS_I("Line PLL Status 1A is 0x%x for port %u \n", lcpll_status, port_no);
-    CSR_RD(base_port_no,VTSS_LINE_PLL5G_L_PLL5G_L_PLL5G_STATUS1B,&lcpll_status);
-    VTSS_I("Line PLL Status 1B is 0x%x for port %u \n", lcpll_status, port_no);
+//     CSR_RD(base_port_no,VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS0,&lcpll_status);
+//     VTSS_I("Host PLL Status 0 is 0x%x for port %u \n", lcpll_status, port_no);
+//     CSR_RD(base_port_no,VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS1A,&lcpll_status);
+//     VTSS_I("Host PLL Status 1A is 0x%x for port %u \n", lcpll_status, port_no);
+//     CSR_RD(base_port_no,VTSS_HOST_PLL5G_H_PLL5G_H_PLL5G_STATUS1B,&lcpll_status);
+//     VTSS_I("Host PLL Status 1B is 0x%x for port %u \n", lcpll_status, port_no);
+//     CSR_RD(base_port_no,VTSS_LINE_PLL5G_L_PLL5G_L_PLL5G_STATUS0,&lcpll_status);
+//     VTSS_I("Line PLL Status 0 is 0x%x for port %u \n", lcpll_status, port_no);
+//     CSR_RD(base_port_no,VTSS_LINE_PLL5G_L_PLL5G_L_PLL5G_STATUS1A,&lcpll_status);
+//     VTSS_I("Line PLL Status 1A is 0x%x for port %u \n", lcpll_status, port_no);
+//     CSR_RD(base_port_no,VTSS_LINE_PLL5G_L_PLL5G_L_PLL5G_STATUS1B,&lcpll_status);
+//     VTSS_I("Line PLL Status 1B is 0x%x for port %u \n", lcpll_status, port_no);
 
     //clearing the serdes status bit so that serdes settings can be applied again(Only in case of Non-WarmStart instance of this function).
+    printf("clearing the serdes status bit so that serdes settings can be applied again\n");
     CSR_COLD_WRM(port_no,VENICE_REV_C_PORT_SERDES_SETUP_STATUS,
             0,
             VENICE_REV_C_PORT_SERDES_SETUP_STATUS_BIT);
 
     /* Set the APC into a proper mode before calibration (rev_a and rev_b are different) */
     if(venice_rev_a(vtss_state, port_no)){
+        printf("Set the APC into a proper mode before calibration\n");
         VTSS_RC(venice_line_serdes_ib_cal(vtss_state, pma_port, TRUE));
     }
 
     /* 6G calibration for VENICE REV C */
     if(!venice_rev_a(vtss_state, port_no)){
+        printf("apply 6G calibration\n");
         if((!mode->sd6g_calib_done) && (!vtss_state->sync_calling_private)) {
-            //if it is initialization phase after a reboot then apply ib calibration 
+            //if it is initialization phase after a reboot then apply ib calibration
+            printf("vtss_venice_c_sd6g_ib_cal\n");
             VTSS_RC(vtss_venice_c_sd6g_ib_cal(vtss_state, port_no));
+            printf("vtss_venice_c_sd6g_ib_cal: end\n");
             mode->sd6g_calib_done = TRUE;
         }
         if (vtss_state->sync_calling_private && (!mode->sd6g_calib_done)) {
@@ -5743,6 +5765,7 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
             /* To satisfy LINT */
             break;
     }
+    printf("Setting F2DF sequence\n");
     VTSS_RC(phy_10g_f2df_conf_set(vtss_state, pma_port));
     if(venice_rev_a(vtss_state, port_no)){
         /* Apply internal ROM settings. This speeds up the configuration.  
@@ -5750,12 +5773,13 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
          */
         VTSS_I("Apply ROM engine port:%u:\n",port_no);
     }
-
+    printf("Setting F2DF sequence: end\n");
     switch (mode->oper_mode) {
         case VTSS_PHY_LAN_MODE:
         case VTSS_PHY_LAN_SYNCE_MODE:
         case VTSS_PHY_LAN_MIXED_SYNCE_MODE:
             /* clear 1G mode */
+            printf("clear 1G mode\n");
             CSR_COLD_WRM(port_no, VTSS_VENICE_DEV1_DATAPATH_CONTROL_DATAPATH_MODE,
                     0,
                     VTSS_F_VENICE_DEV1_DATAPATH_CONTROL_DATAPATH_MODE_ETH_1G_ENA |
@@ -5769,6 +5793,7 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
         case VTSS_PHY_WAN_SYNCE_MODE:
         case VTSS_PHY_WAN_MIXED_SYNCE_MODE:
             /* clear 1G mode */
+            printf("clear 1G mode\n");
             CSR_COLD_WRM(port_no, VTSS_VENICE_DEV1_DATAPATH_CONTROL_DATAPATH_MODE,
                     0,
                     VTSS_F_VENICE_DEV1_DATAPATH_CONTROL_DATAPATH_MODE_ETH_1G_ENA |
@@ -5779,6 +5804,7 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
             break;
         case VTSS_PHY_1G_MODE:
             /* enter 1G mode */
+            printf("enter 1G mode\n");
             CSR_COLD_WRM(port_no, VTSS_VENICE_DEV1_DATAPATH_CONTROL_DATAPATH_MODE,
                     VTSS_F_VENICE_DEV1_DATAPATH_CONTROL_DATAPATH_MODE_ETH_1G_ENA |
                     (mode->interface == VTSS_PHY_SGMII_LANE_0_XFI ? 0 : VTSS_F_VENICE_DEV1_DATAPATH_CONTROL_DATAPATH_MODE_SEL_1G_LANE_3), 
@@ -5832,15 +5858,18 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
                 VTSS_E("media type not supported");
         }
     }
+    printf("Setting line serdes sequence\n");
     VTSS_RC(venice_line_serdes(vtss_state, pma_port));
-
+    printf("Setting line serdes sequence: end\n");
     /*6G serdes applied here */
-    CSR_RD(port_no, VTSS_VENICE_DEV1_32_SD10G65_APC_APC_COMMON_CFG0, &apc_status);
-    VTSS_I("Line APC Common CFG0 is 0x%x for port %u \n", apc_status, port_no);
+    //CSR_RD(port_no, VTSS_VENICE_DEV1_32_SD10G65_APC_APC_COMMON_CFG0, &apc_status);
+    //VTSS_I("Line APC Common CFG0 is 0x%x for port %u \n", apc_status, port_no);
 
     if(venice_rev_a(vtss_state, port_no)){
         /*venice REV A 6g serdes settings */
+        printf("Setting 6g serdes sequence\n");
         VTSS_RC(venice_sd6g_cfg(vtss_state, port_no, serdes_mode));
+         printf("Setting 6g serdes sequence: end\n");
     } else {
         /*venice C 6g serdes settings */
         VTSS_RC(vtss_venice_c_sd6g_cfg(vtss_state, port_no, serdes_mode)); 
@@ -5854,9 +5883,13 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
             VTSS_F_PCS_XAUI_PCS_XAUI_CONFIGURATION_PCS_XAUI_SD_CFG_SD_ENA);
 
     /*Configure power */
+    printf("Configure power\n");
     VTSS_RC(phy_10g_power_set(vtss_state, port_no));
+    printf("Configure power: end\n");
     /* Apply ref clock and recovered clock outputs.  */
+    printf("Apply ref clock and recovered clock outputs\n");
     VTSS_RC(phy_10g_srefclk_set(vtss_state, pma_port));
+    printf("Apply ref clock and recovered clock outputs: end\n");
 
     /*Setting the macro setup complete bit to 1*/
     if(!venice_rev_a(vtss_state, port_no)){
@@ -5871,12 +5904,15 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
                     VENICE_REV_C_PORT_SERDES_SETUP_STATUS_BIT);
         }
     }
-
+    printf("phy_10g_rxckout_set & phy_10g_txckout_set\n");
     VTSS_RC(phy_10g_rxckout_set(vtss_state, pma_port));
     VTSS_RC(phy_10g_txckout_set(vtss_state, pma_port));
+    printf("phy_10g_rxckout_set & phy_10g_txckout_set: end\n");
     VTSS_I("Serdes config complete port %u\n",port_no);
 
-    VTSS_RC(phy_10g_kr_conf_init(vtss_state, pma_port));
+    //printf("phy_10g_kr_conf_init\n");
+    //VTSS_RC(phy_10g_kr_conf_init(vtss_state, pma_port));
+    //printf("phy_10g_kr_conf_init: end\n");
     if (mode->oper_mode == VTSS_PHY_1G_MODE) {
         // Clear all Interrupts
         CSR_WARM_WR(port_no, VTSS_VENICE_WIS_EWIS_Interrupt_Mask_1_EWIS_INTR_MASKA_1, 0);
@@ -5888,6 +5924,7 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
     }
 
     /* Block level reset, not using WRM here because all bits in this register are One-shot */
+    printf("Block level reset\n");
     CSR_COLD_WR(port_no, VTSS_VENICE_DEV1_BLOCK_LEVEL_RESET_BLOCK_LEVEL_RESET1,
             VTSS_F_VENICE_DEV1_BLOCK_LEVEL_RESET_BLOCK_LEVEL_RESET1_I2CM_RESET |
             VTSS_BIT(8) |
@@ -5928,7 +5965,7 @@ static vtss_rc phy_10g_mode_conf_set(vtss_state_t *vtss_state,
     if (macsec_enable || (mode->oper_mode == VTSS_PHY_1G_MODE)) {
         VTSS_RC(phy_10g_mac_conf(vtss_state, port_no, 1, macsec_enable));
     }
-
+    printf("END\n");
     return VTSS_RC_OK;
 }
 
@@ -7162,12 +7199,12 @@ static vtss_rc phy_10g_f2df_conf_set(struct vtss_state_s *vtss_state,
                 0,
                 VENICE_REV_C_PORT_F2DF_RECIEVER_SETUP_STATUS_BIT)
 
-        CSR_RD(port_no,VENICE_REV_C_PORT_SERDES_SETUP_STATUS, &value);
-        value &= VENICE_REV_C_PORT_F2DF_SETUP_STATUS_BIT;
-        if(value){
-            VTSS_N("F2DF setup not executed during to warmstart\n");
-            return VTSS_RC_OK;
-        }
+        // CSR_RD(port_no,VENICE_REV_C_PORT_SERDES_SETUP_STATUS, &value);
+        // value &= VENICE_REV_C_PORT_F2DF_SETUP_STATUS_BIT;
+        // if(value){
+        //     VTSS_N("F2DF setup not executed during to warmstart\n");
+        //     return VTSS_RC_OK;
+        // }
         VTSS_RC(vtss_sd10g65_setup_f2df_args_init(&f2df_args));
         f2df_args.chip_name = get_chip_name();
         f2df_args.i1_fsel = 10;

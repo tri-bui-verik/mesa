@@ -99,7 +99,8 @@ static vtss_rc vtss_mmd_warm_wr_masked(vtss_state_t         *vtss_state,
                                        const u16            line)
 {
     u16  val;
-
+    printf("Write reg: Device ID: 0x%04hhx, Address: 0x%04hhx, Value: 0x%08x, Mask: 0x%08x\n",mmd, addr, value, mask);
+    return VTSS_RC_OK;
     if (vtss_state->sync_calling_private) {
         VTSS_RC(vtss_phy_ewis_read(vtss_state, port_no, mmd, addr, &val));
         if ((val ^ value) & mask & chk_mask) { /* Change in bit field */
@@ -122,6 +123,8 @@ static vtss_rc vtss_mmd_warm_wr(vtss_state_t         *vtss_state,
                                 const char           *function,
                                 const u16            line)
 {
+    printf("Write reg: Device ID: 0x%04hhx, Address: 0x%04hhx, Value: 0x%08x\n",mmd, addr, value);
+    return VTSS_RC_OK;
     return vtss_mmd_warm_wr_masked(vtss_state, port_no, mmd, addr, value, 0xFFFF, 0xFFFF, function, line);
 }
 
@@ -640,11 +643,11 @@ static vtss_rc vtss_phy_ewis_mode_conf_set(vtss_state_t *vtss_state,
     }
 
     /* Read and check the status */
-    VTSS_RC(vtss_phy_ewis_read(vtss_state, port_no, MMD_PMA, 0xA101, &reg_val));
+    // VTSS_RC(vtss_phy_ewis_read(vtss_state, port_no, MMD_PMA, 0xA101, &reg_val));
 
-    if ((mode != VTSS_WIS_OPERMODE_DISABLE) && (!(reg_val & (1 << 3)))) {
-        VTSS_E("WAN API mode does not match the actual chip mode :: Value - [%x]", reg_val);
-    }
+    // if ((mode != VTSS_WIS_OPERMODE_DISABLE) && (!(reg_val & (1 << 3)))) {
+    //     VTSS_E("WAN API mode does not match the actual chip mode :: Value - [%x]", reg_val);
+    // }
     if (vtss_state->phy_10g_state[port_no].type == VTSS_PHY_TYPE_8487 ||
         vtss_state->phy_10g_state[port_no].type == VTSS_PHY_TYPE_8488) {
         /* Reset the PMA Tx & Rx */

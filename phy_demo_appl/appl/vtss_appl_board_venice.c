@@ -315,11 +315,11 @@ int venice_char_board_init(int argc, const char **argv, vtss_appl_board_t *board
     exit(EXIT_SUCCESS);
   }
 
-  socket_init(argv[1], "2310"); // Connect to the CPU board
+  //socket_init(argv[1], "2310"); // Connect to the CPU board
   //}
 
   //TEST CODE
-  u16 *val = (u16 *)malloc(sizeof(u16));
+  //u16 *val = (u16 *)malloc(sizeof(u16));
   //mmd_read_rbt_test(0x0, 0x1e, 0x0, val);
   //    spi_read_rbt_test(0x0, 0x1e, 0x0, val);
   //    printf("Dev ID = 0x%x\n",*val); fflush(stdout);

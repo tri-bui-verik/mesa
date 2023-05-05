@@ -30,6 +30,12 @@
 #define VTSS_BITMASK(x)               ((1U << (x)) - 1)
 #endif
 
+#ifndef VENICE_REV_C
+#define VENICE_REVISION 0
+#else
+#define VENICE_REVISION 1
+#endif
+
 #ifndef VTSS_ENCODE_BITFIELD
 #define VTSS_ENCODE_BITFIELD(x,o,w)   (((x) & VTSS_BITMASK(w)) << (o))
 #endif
@@ -160,6 +166,7 @@ static vtss_rc vtss_mmd_wr(vtss_state_t         *vtss_state,
                            const u16            value)
 {
     u16 val = value;
+    printf("Write reg: Device ID: 0x%04hhx, Address: 0x%04hhx, Value: 0x%04hhx\n",mmd, addr, value);
     return vtss_phy_rd_wr(vtss_state, 0, port_no, mmd, addr, &val);
 }
 
@@ -185,6 +192,8 @@ static vtss_rc vtss_mmd_warm_wr_masked(vtss_state_t         *vtss_state,
                                        const char           *function,                                 
                                        const u16            line)
 {
+    printf("Write reg: Device ID: 0x%04hhx, Address: 0x%04hhx, Value: 0x%08x, Mask: 0x%08x\n",mmd, addr, value, mask);
+    return VTSS_RC_OK;
     u16 val = 0;
     vtss_phy_10g_port_state_t *ps = &vtss_state->phy_10g_state[port_no];
 
@@ -214,7 +223,8 @@ static vtss_rc vtss_mmd_warm_wr(vtss_state_t         *vtss_state,
                                 const char           *function,                                 
                                 const u16            line)
 {
-
+    printf("Write reg: Device ID: 0x%04hhx, Address: 0x%04hhx, Value: 0x%08x\n",mmd, addr, value);
+    return VTSS_RC_OK;
     return vtss_mmd_warm_wr_masked(vtss_state, port_no, mmd, addr, value, 0xFFFF, 0xFFFF, function, line);
 }
 
@@ -470,21 +480,23 @@ static vtss_rc vtss_phy_10g_identify_private(vtss_state_t *vtss_state,
         vtss_state->init_conf.spi_32bit_read_write != NULL) {
         u32 spi_val = 0;
         if (vtss_state->init_conf.spi_32bit_read_write != NULL) {
-            VTSS_RC(vtss_state->init_conf.spi_32bit_read_write(vtss_state, port_no, TRUE, MMD_GLOBAL, 0, &spi_val));
-            model = (u16) spi_val;
-            if (model == 0x8484 || model == 0x8487 || model == 0x8488 || model == 0x8489 || model == 0x8490 || model == 0x8491
-                || model == 0x8256 || model == 0x8257 || model == 0x8258 || model == 0x8254) {
-                identified = TRUE;
-            } 
+            //VTSS_RC(vtss_state->init_conf.spi_32bit_read_write(vtss_state, port_no, TRUE, MMD_GLOBAL, 0, &spi_val));
+            // model = (u16) spi_val;
+            // if (model == 0x8484 || model == 0x8487 || model == 0x8488 || model == 0x8489 || model == 0x8490 || model == 0x8491
+            //     || model == 0x8256 || model == 0x8257 || model == 0x8258 || model == 0x8254) {
+            //     identified = TRUE;
+            // } 
+            model = (u16)0x8491;
+            identified = TRUE;
             if (identified ) {
-                VTSS_RC(vtss_state->init_conf.spi_32bit_read_write(vtss_state, port_no, TRUE, MMD_GLOBAL, 1, &spi_val));
-                rev = (u16) spi_val;
-                VTSS_RC(vtss_state->init_conf.spi_32bit_read_write(vtss_state, port_no, TRUE, MMD_GLOBAL, VENICE_REG_EFUSE, &spi_val));
-                efuse = (u16) spi_val;
-                VTSS_RC(vtss_state->init_conf.spi_32bit_read_write(vtss_state, port_no, TRUE, MMD_GLOBAL, VENICE_REG_FEATURE_STATE, &spi_val));
-                device_feature_status = (u16) spi_val;
-                VTSS_RC(vtss_state->init_conf.spi_32bit_read_write(vtss_state, port_no, TRUE, MMD_GLOBAL, EFUSE_Q347_Q32, &spi_val));
-                is_1_channel_8489= spi_val && VTSS_BIT(0) ? TRUE : FALSE;
+                //VTSS_RC(vtss_state->init_conf.spi_32bit_read_write(vtss_state, port_no, TRUE, MMD_GLOBAL, 1, &spi_val));
+                rev = (u16) VENICE_REVISION;
+                //VTSS_RC(vtss_state->init_conf.spi_32bit_read_write(vtss_state, port_no, TRUE, MMD_GLOBAL, VENICE_REG_EFUSE, &spi_val));
+                efuse = (u16) 0x0;
+                //VTSS_RC(vtss_state->init_conf.spi_32bit_read_write(vtss_state, port_no, TRUE, MMD_GLOBAL, VENICE_REG_FEATURE_STATE, &spi_val));
+                device_feature_status = (u16) 0x2;
+                //VTSS_RC(vtss_state->init_conf.spi_32bit_read_write(vtss_state, port_no, TRUE, MMD_GLOBAL, EFUSE_Q347_Q32, &spi_val));
+                is_1_channel_8489= FALSE;
             }
 
         } else if (vtss_state->init_conf.spi_read_write != NULL){
@@ -495,13 +507,13 @@ static vtss_rc vtss_phy_10g_identify_private(vtss_state_t *vtss_state,
                 identified = TRUE;
             }
             if (identified ) {
-                VTSS_RC(vtss_phy_10g_spi_read_write(vtss_state, port_no, TRUE, MMD_GLOBAL, 1, &spi_val));
+                //VTSS_RC(vtss_phy_10g_spi_read_write(vtss_state, port_no, TRUE, MMD_GLOBAL, 1, &spi_val));
                 rev = (u16) spi_val;
-                VTSS_RC(vtss_phy_10g_spi_read_write(vtss_state, port_no, TRUE, MMD_GLOBAL, VENICE_REG_EFUSE, &spi_val));
+                //VTSS_RC(vtss_phy_10g_spi_read_write(vtss_state, port_no, TRUE, MMD_GLOBAL, VENICE_REG_EFUSE, &spi_val));
                 efuse = (u16) spi_val;
-                VTSS_RC(vtss_phy_10g_spi_read_write(vtss_state, port_no, TRUE, MMD_GLOBAL, VENICE_REG_FEATURE_STATE, &spi_val));
+                //VTSS_RC(vtss_phy_10g_spi_read_write(vtss_state, port_no, TRUE, MMD_GLOBAL, VENICE_REG_FEATURE_STATE, &spi_val));
                 device_feature_status = (u16) spi_val;
-                VTSS_RC(vtss_phy_10g_spi_read_write(vtss_state, port_no, TRUE, MMD_GLOBAL, EFUSE_Q347_Q32, &spi_val));
+                //VTSS_RC(vtss_phy_10g_spi_read_write(vtss_state, port_no, TRUE, MMD_GLOBAL, EFUSE_Q347_Q32, &spi_val));
                 is_1_channel_8489 = spi_val && VTSS_BIT(0) ? TRUE : FALSE;
             }
         }
@@ -2257,15 +2269,19 @@ static vtss_rc vtss_phy_10g_mode_set_init (vtss_state_t *vtss_state,
 
     vtss_state->phy_10g_state[port_no].mode = *mode;                   
     /* Identify and store the Phy id */
+    printf("Identify and store the Phy id\n");
     VTSS_RC(vtss_phy_10g_identify_private(vtss_state, port_no));
     /* Reset what is needed */
+    printf("Reset what is needed\n");
     VTSS_RC(VTSS_RC_COLD(vtss_phy_10g_reset_blocks(vtss_state, port_no)));
     /* Register the channel id       */
+    printf("Register the channel id\n");
     VTSS_RC(vtss_phy_10g_set_channel(vtss_state, port_no));
 #if defined(VTSS_OPT_PHY_TIMESTAMP)
+    printf("vtss_phy_ts_bypass_set\n");
     VTSS_RC(VTSS_RC_COLD(vtss_phy_ts_bypass_set(vtss_state, port_no, TRUE, FALSE)));
 #endif
-    VTSS_I("Venice work around: %d",mode->venice_rev_a_los_detection_workaround);
+    printf("Venice work around: %d",mode->venice_rev_a_los_detection_workaround);
 #if defined(VTSS_FEATURE_SYNCE_10G)
     if ((vtss_state->phy_10g_state[port_no].type == VTSS_PHY_TYPE_8484) || 
         (vtss_state->phy_10g_state[port_no].type == VTSS_PHY_TYPE_8487) ||
@@ -2324,7 +2340,10 @@ static vtss_rc vtss_phy_10g_mode_set_init (vtss_state_t *vtss_state,
         } else {
             vtss_state->ewis_conf[port_no].ewis_mode = VTSS_WIS_OPERMODE_DISABLE;
         }
+        printf("ewis_mode_conf_set\n");
         VTSS_RC(VTSS_FUNC_COLD(cil.ewis_mode_conf_set, port_no));
+        printf("ewis_mode_conf_set:end \n");
+
 #endif  /* VTSS_FEATURE_WIS */
         return VTSS_RC_OK;
     }
@@ -2672,7 +2691,6 @@ vtss_rc vtss_phy_10g_mode_set (const vtss_inst_t inst,
 
     VTSS_ENTER();
     if ((rc = vtss_inst_port_no_check(inst, &vtss_state, port_no)) == VTSS_RC_OK) {
-
         rc = vtss_phy_10g_custom_mode_set_priv(vtss_state, port_no, mode);
 
         if(rc == VTSS_RC_OK) {
