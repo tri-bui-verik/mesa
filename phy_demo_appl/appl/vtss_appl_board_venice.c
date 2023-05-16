@@ -240,7 +240,7 @@ vtss_rc spi_32bit_read_write_rbt(vtss_inst_t    inst,
   char* output = malloc(1024*sizeof(char));
   char command[256];
   // Check register is 32bit
-  if (addr & 0xf000 == 0xf000) {
+  if (add >> 12 == 0xf) {
     //Get true addr
     addr = ((addr & 0x0fff) * 2) | 0xf000;
     // Read 32-bit
