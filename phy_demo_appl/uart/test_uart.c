@@ -1,6 +1,7 @@
 #include "uart_venice.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <regex.h>
 
 void main() 
 {
@@ -11,9 +12,13 @@ void main()
     uart_excute(fp, "poke 0x83100400 0x3c 0xf224", NULL);
     uart_excute(fp, "poke 0x83100400 0x34 0x4001", NULL);
     uart_excute(fp, "peek 0x83100400 0x38", output);
-    printf("%s\n", output);
+    char* low = strstr(output,"val:");
+    low[19+4] = '\0';
+    printf("%s\n", low + 19);
     uart_excute(fp, "poke 0x83100400 0x34 0x4001", NULL);
     uart_excute(fp, "peek 0x83100400 0x38", output);
-    printf("%s\n", output);
+    char* high = strstr(output,"val:");
+    high[19+4] = '\0';
+    printf("%s\n", high + 19);
     free(output);
 }

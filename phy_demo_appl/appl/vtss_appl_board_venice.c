@@ -54,6 +54,9 @@ int sockfd;
 FILE *miim_read_fp;
 FILE *miim_write_fp;
 char miim_read_file[64];
+#ifdef VENICE_UART
+int uartfd;
+#endif
 
 // Function for doing read access from the Rabbit CPU via socket
 // In :  Buffer - Pointer for the data read via the socket.
@@ -233,6 +236,74 @@ vtss_rc spi_32bit_read_write_rbt(vtss_inst_t    inst,
                                  u16            addr,
                                  u32            *value)
 {
+#ifdef VENICE_UART
+  char* output = malloc(1024*sizeof(char));
+  char command[256];
+  // Check register is 32bit
+  if (addr & 0xf000) {
+    //Get true addr
+    addr = ((addr & 0x0fff) * 2) | 0xf000;
+    // Read 32-bit
+    if (rd){
+      sprintf(command, "poke 0x83100400 0x34 0x%x", mmd);
+      uart_excute(uartfd, command, NULL);
+      sprintf(command, "poke 0x83100400 0x3c 0x%x", addr);
+      uart_excute(uartfd, command, NULL);
+      sprintf(command, "poke 0x83100400 0x34 0x%x", (mmd | 0x4000));
+      uart_excute(uartfd, command, NULL);
+      uart_excute(uartfd, "peek 0x83100400 0x38", output);
+      char* low = strstr(output,"val:");
+      if(low) {
+        low[19+4] = '\0';
+        *value = (u32)strtol(low + 19, NULL, 16);
+      } else printf("ERROR WITH UART");
+      sprintf(command, "poke 0x83100400 0x34 0x%x", (mmd | 0x4000));
+      uart_excute(uartfd, command, NULL);
+      uart_excute(uartfd, "peek 0x83100400 0x38", output);
+      char* high = strstr(output,"val:");
+      if(high) {
+        high[19+4] = '\0';
+        *value = *value | ((u32)strtol(low + 19, NULL, 16) << 16);
+      } else printf("ERROR WITH UART");
+
+    } else { 
+      sprintf(command, "poke 0x83100400 0x34 0x%x", mmd);
+      uart_excute(uartfd, command, NULL);
+      sprintf(command, "poke 0x83100400 0x3c 0x%x", addr + 1);
+      uart_excute(uartfd, command, NULL);
+      sprintf(command, "poke 0x83100400 0x38 0x%x", (*value >> 16));
+      uart_excute(uartfd, command, NULL);
+      sprintf(command, "poke 0x83100400 0x3c 0x%x", addr);
+      uart_excute(uartfd, command, NULL);
+      sprintf(command, "poke 0x83100400 0x38 0x%x", (*value & 0xffff));
+      uart_excute(uartfd, command, output);
+      if (output[0] == '\0') printf("ERROR WITH UART");
+    }
+  } else {
+    if (rd){
+      sprintf(command, "poke 0x83100400 0x34 0x%x", mmd);
+      uart_excute(uartfd, command, NULL);
+      sprintf(command, "poke 0x83100400 0x3c 0x%x", addr);
+      uart_excute(uartfd, command, NULL);
+      sprintf(command, "poke 0x83100400 0x34 0x%x", mmd | 0x8000);
+      uart_excute(uartfd, command, NULL);
+      uart_excute(uartfd, "peek 0x83100400 0x38", output);
+      char* low = strstr(output,"val:");
+      if(low) {
+        low[19+4] = '\0';
+        *value = (u32)strtol(low + 19, NULL, 16);
+      } else printf("ERROR WITH UART");
+    } else {
+      sprintf(command, "poke 0x83100400 0x34 0x%x", mmd);
+      uart_excute(uartfd, command, NULL);
+      sprintf(command, "poke 0x83100400 0x3c 0x%x", addr);
+      uart_excute(uartfd, command, NULL);
+      sprintf(command, "poke 0x83100400 0x38 0x%x", (*value & 0xffff));
+      uart_excute(uartfd, command, output);
+      if (output[0] == '\0') printf("ERROR WITH UART");
+    }
+  }
+#else
   char buffer[255];
   u32 v;
   int i;
@@ -278,6 +349,7 @@ vtss_rc spi_32bit_read_write_rbt(vtss_inst_t    inst,
     T_N("spi32_wr port_no = 0x%X, mmd = 0x%X, addr = 0x%X, value = 0x%X", port_no, mmd, addr, *value);
     // printf("spi32_wr port_no = 0x%X, mmd = 0x%X, addr = 0x%X, value = 0x%X\n", port_no, mmd, addr, *value);
   }
+  #endif
   return VTSS_RC_OK;
 }
 
@@ -304,7 +376,9 @@ int venice_char_board_init(int argc, const char **argv, vtss_appl_board_t *board
   // board->init.init_conf->mmd_write = mmd_write_rbt; // Set pointer to the MMD write function for this board.
 
   board->init.init_conf->spi_32bit_read_write = *spi_32bit_read_write_rbt; // Set pointer to the SPI read function for this board.
-
+#ifdef VENICE_UART
+  uartfd = uart_venice_init("/dev/ttyUSB0");
+#endif
   //#endif /* VTSS_CHIP_10G_PHY */
 
   //board->init.init_conf->warm_start_enable = FALSE;
@@ -315,11 +389,11 @@ int venice_char_board_init(int argc, const char **argv, vtss_appl_board_t *board
     exit(EXIT_SUCCESS);
   }
 
-  socket_init(argv[1], "2310"); // Connect to the CPU board
+  //socket_init(argv[1], "2310"); // Connect to the CPU board
   //}
 
   //TEST CODE
-  u16 *val = (u16 *)malloc(sizeof(u16));
+  //u16 *val = (u16 *)malloc(sizeof(u16));
   //mmd_read_rbt_test(0x0, 0x1e, 0x0, val);
   //    spi_read_rbt_test(0x0, 0x1e, 0x0, val);
   //    printf("Dev ID = 0x%x\n",*val); fflush(stdout);

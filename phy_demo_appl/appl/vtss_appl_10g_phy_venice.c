@@ -850,7 +850,7 @@ int main(int argc, const char **argv) {
     // LREFCLK is_high_amp :
     // --> TRUE (1100mV to 1500mV diff swing)
     // --> FASLE (200mV to 1200mV diff swing)
-    oper_mode.l_clk_src.is_high_amp = TRUE;
+    oper_mode.l_clk_src.is_high_amp = FALSE;
 
     switch (phy_mode) {
     case PHY_MODE_10G_LAN_XAUI:

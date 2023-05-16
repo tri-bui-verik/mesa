@@ -2,7 +2,6 @@
 // C library headers
 #include <stdio.h>
 #include <string.h>
-#include <regex.h>
 #include <stdlib.h>
 
 // Linux headers
@@ -44,7 +43,7 @@ int uart_venice_init(const char* device)
     // tty.c_oflag &= ~OXTABS; // Prevent conversion of tabs to spaces (NOT PRESENT ON LINUX)
     // tty.c_oflag &= ~ONOEOT; // Prevent removal of C-d chars (0x004) in output (NOT PRESENT ON LINUX)
 
-    tty.c_cc[VTIME] = 10;    // Wait for up to 1s (10 deciseconds), returning as soon as any data is received.
+    tty.c_cc[VTIME] = 1;    // Wait for up to 1s (10 deciseconds), returning as soon as any data is received.
     tty.c_cc[VMIN] = 0;
 
     // Set in/out baud rate to be 115200
