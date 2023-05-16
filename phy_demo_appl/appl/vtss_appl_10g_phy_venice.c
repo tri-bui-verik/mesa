@@ -683,10 +683,10 @@ int main(int argc, const char **argv) {
   // VTSS_TRACE_LEVEL_DEBUG
   // VTSS_TRACE_LEVEL_NOISE
   memset(&vtss_appl_trace_conf, 0, sizeof(vtss_appl_trace_conf));
-  vtss_appl_trace_conf.level[VTSS_TRACE_LAYER_AIL] = VTSS_TRACE_LEVEL_ERROR;
-  vtss_appl_trace_conf.level[VTSS_TRACE_LAYER_CIL] = VTSS_TRACE_LEVEL_ERROR;
-  printf ("//Default AIL TRACE Level : VTSS_TRACE_LEVEL_ERROR\n" );
-  printf ("//Default CIL TRACE Level : VTSS_TRACE_LEVEL_ERROR\n" );
+  vtss_appl_trace_conf.level[VTSS_TRACE_LAYER_AIL] = VTSS_TRACE_LEVEL_DEBUG;
+  vtss_appl_trace_conf.level[VTSS_TRACE_LAYER_CIL] = VTSS_TRACE_LEVEL_DEBUG;
+  printf ("//Default AIL TRACE Level : VTSS_TRACE_LEVEL_DEBUG\n" );
+  printf ("//Default CIL TRACE Level : VTSS_TRACE_LEVEL_DEBUG\n" );
 
   // Setup trace level for PHY group - vtss_appl_trace_conf is a global
   vtss_trace_conf_set(VTSS_TRACE_GROUP_PHY, &vtss_appl_trace_conf);
