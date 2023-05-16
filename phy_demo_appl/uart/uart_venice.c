@@ -58,26 +58,29 @@ int uart_venice_init(const char* device)
     }
 
     // Try to clean buffer before running
-    uart_excute(serial_port,"");
+    uart_excute(serial_port,"", NULL);
     
     return serial_port;
 }
 
-char* uart_read(int serial_port)
+void uart_read(int serial_port, char *output)
 {
-    char *output = malloc(2048 * sizeof(char));
-    output[0] = 0;
-    char read_buf [65];
+
+    if (output) output[0] = 0;
+    char read_buf [128];
     int num_bytes;
+    int index = 0;
     do {
         num_bytes = read(serial_port, read_buf, sizeof(read_buf));
-        read_buf[num_bytes] = 0;
-        strcat(output, read_buf);
+        if (output) {
+            read_buf[num_bytes] = 0;
+            memcpy(output + index, read_buf, num_bytes + 1);
+            index += num_bytes;
+        }
     } while(num_bytes > 0);
-    return output;
 }
 
-char* uart_excute(int serial_port, const char* command)
+void uart_excute(int serial_port, const char* command, char *output)
 {
     char msg[strlen(command) + 1];
     unsigned char end[] = "\r";
@@ -85,5 +88,5 @@ char* uart_excute(int serial_port, const char* command)
     strcpy(msg, command);
     strcat(msg, end);
     write(serial_port, msg, sizeof(msg));
-    return uart_read(serial_port);
+    uart_read(serial_port, output);
 }

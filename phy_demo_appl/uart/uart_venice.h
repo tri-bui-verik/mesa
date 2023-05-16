@@ -3,6 +3,6 @@
 
 
 int uart_venice_init(const char* device);
-char* uart_excute(int fp, const char * command);
+void uart_excute(int fp, const char * command, char* output);
 
 #endif
